@@ -1,6 +1,6 @@
-public abstract class Piece {
-    private String name; // E4P, D4P, B1K... each unique position and name. P for Pawn, K for Knight.
-    private String type; // pawn, knight...
+public class Piece {
+    private String name; // E4P, D4P, B1K, WK... each unique position and name. P for Pawn, K for Knight, WK for white king
+    private String type; // Pawn, Rook...
     private String color; // Black or White
     private String currentPosition;
 
