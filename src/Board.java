@@ -6,10 +6,10 @@ public class Board { // may implement runnable later.
     Piece[][] board;
 
     public static void main(String[] args) {
-
+        // how to recognize possible moves? save them as array?
     }
 
-    void gameInitializer() {
+    void initializeGame() {
         // White pawns
         Piece A2Pawn = new Piece("A2Pawn", "Pawn", "White", "A2");
         Piece B2Pawn = new Piece("B2Pawn", "Pawn", "White", "B2");
@@ -32,9 +32,60 @@ public class Board { // may implement runnable later.
 
         board = new Piece[8][8];
         // board[0][a], numbers are vertical, letters are horizontal.
-        // board[0][0] = A1
-        // board[7][0] = A8
+        // board[0][0] = A1, [7][7] = H8
+        // A7? == [6][0]
+
 
         board[2][0] = A2Pawn;
+        board[2][1] = B2Pawn;
+        board[2][2] = C2Pawn;
+        board[2][3] = D2Pawn;
+        board[2][4] = E2Pawn;
+        board[2][5] = F2Pawn;
+        board[2][6] = G2Pawn;
+        board[2][7] = H2Pawn;
+
+    }
+
+    void legalMoveChecker(Piece piece) {
+        switch (piece.getType()) {
+            case "Pawn" -> {
+                int position = coordinateConverter(piece.getCurrentPosition());
+                int i = position / 10;
+                int j = position % 10;
+
+                // TODO: CONTINUE HERE
+
+                if (piece.getColor() == "White") {
+
+                }
+            }
+        }
+    }
+
+    /**
+     * coordinateConverter
+     *
+     * @param position is Chess algebraic notation. i.g: A7, E4
+     * @return an integer representation of the corresponding array location [i][j],
+     *  which its tens represent i, and ones represent j.
+     *  int i = num / 10;
+     *  int j = num % 10;
+     */
+    int coordinateConverter(String position) { // return integer, tens will be value for i and ones will be value for j.
+        int num = 10 * (Character.getNumericValue(position.charAt(1)) - 1);
+        // i.g: A7 is Row 7 column A. Array is [6][0] num is 60.
+
+        switch (position.charAt(0)) {
+            case 'A' -> num += 0;
+            case 'B' -> num += 1;
+            case 'C' -> num += 2;
+            case 'D' -> num += 3;
+            case 'E' -> num += 4;
+            case 'F' -> num += 5;
+            case 'G' -> num += 6;
+            case 'H' -> num += 7;
+        }
+        return num;
     }
 }
