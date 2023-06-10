@@ -47,17 +47,55 @@ public class Board { // may implement runnable later.
 
     }
 
-    void legalMoveChecker(Piece piece) {
+    void legalMoveChecker(Piece piece) {// TODO: Display as dots on GUI
+
+        int position = coordinateConverter(piece.getCurrentPosition());
+        int i = position / 10; // i for first digit on array
+        int j = position % 10; // j for second digit on array
+
         switch (piece.getType()) {
             case "Pawn" -> {
-                int position = coordinateConverter(piece.getCurrentPosition());
-                int i = position / 10;
-                int j = position % 10;
+                // When pawns move for the first time, they can advance two tiles.
 
-                // TODO: CONTINUE HERE
+                if (piece.getColor() == "White" && (i == 2)) { // and is first time moving
+                    // if pawn is white, advance towards greater row number.
+                    // move: [i][j + 1] or [i][j + 2]
+                    // attack: [i + 1][j + 1] or [i - 1][j + 1]
+                } else {
+                    // move: [i][j + 1]
+                    // attack: [i + 1][j + 1] or [i - 1][j + 1]
+                }
 
-                if (piece.getColor() == "White") {
+                if (piece.getColor() == "Black" && (i == 7)) {
+                    // if pawn is black, advance towards lower row number.
+                    // move: [i][j - 1] or [i][j - 2]
+                    // attack: [i + 1][j - 1] or [i - 1][j - 1]
+                } else {
+                    // move: [i][j - 1]
+                    // attack: [i + 1][j - 1] or [i - 1][j - 1]
+                }
+            }
+            case "Rook" -> {
+                /*
+                Rooks can go anywhere as they want vertically and horizontally as long as there aren't any pieces in
+                their way.
+                */
 
+                // Horizontal movement
+                for (int k = 0; k < board[0].length; k++) {
+                    if (k == j) {
+                        continue;
+                    }
+                    // TODO: display dots on GUI
+                    // if the tile is null, display. Else, consider attack
+                }
+                // Vertical movement
+                for (int k = 0; k < board.length; k++) {
+                    if (k == i) {
+                        continue;
+                    }
+                    // TODO: display dots on GUI
+                    // if the tile is null, display. Else, consider attack
                 }
             }
         }
