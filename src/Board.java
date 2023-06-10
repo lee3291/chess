@@ -10,6 +10,11 @@ public class Board { // may implement runnable later.
     }
 
     void initializeGame() {
+
+        /**
+         * Initialize piece objects
+         */
+
         // White pawns
         Piece A2Pawn = new Piece("A2Pawn", "Pawn", "White", "A2");
         Piece B2Pawn = new Piece("B2Pawn", "Pawn", "White", "B2");
@@ -30,11 +35,22 @@ public class Board { // may implement runnable later.
         Piece G7Pawn = new Piece("G7Pawn", "Pawn", "Black", "G7");
         Piece H7Pawn = new Piece("H7Pawn", "Pawn", "Black", "H7");
 
+        // While Rooks
+        Piece A1Rook = new Piece("A1Rook", "Rook", "White", "A1");
+        Piece H1Rook = new Piece("H1Rook", "Rook", "White", "H1");
+
+        // Black Rooks
+        Piece A8Rook = new Piece("A8Rook", "Rook", "Black", "A8");
+        Piece H8Rook = new Piece("H8Rook", "Rook", "Black", "H8");
+
+        /**
+         *  Set tiles with pieces
+         */
+
         board = new Piece[8][8];
         // board[0][a], numbers are vertical, letters are horizontal.
         // board[0][0] = A1, [7][7] = H8
         // A7? == [6][0]
-
 
         board[2][0] = A2Pawn;
         board[2][1] = B2Pawn;
@@ -44,6 +60,11 @@ public class Board { // may implement runnable later.
         board[2][5] = F2Pawn;
         board[2][6] = G2Pawn;
         board[2][7] = H2Pawn;
+
+        board[0][0] = A1Rook;
+        board[0][7] = H1Rook;
+        board[7][0] = A8Rook;
+        board[7][7] = H8Rook;
 
     }
 
@@ -97,6 +118,49 @@ public class Board { // may implement runnable later.
                     // TODO: display dots on GUI
                     // if the tile is null, display. Else, consider attack
                 }
+            }
+
+            case "Bishop" -> {
+                // Moves diagonally, C1 F1 is white, C8 F8 is black
+                // TODO: How to recognize out of bounds index? loop for 8 tiles diagonally and check exception?
+                for (int k = 0; k < 8; k++) {
+                    // i + 1, j + 1
+                    // i + 1, j - 1
+                    // i - 1, j - 1
+                    // i - 1, j + 1
+
+                    // TODO: display dots on GUI
+                    // if the tile is null, display. Else, consider attack
+                }
+            }
+
+            case "Queen" -> {
+                // Combine Bishop and Rook logic
+            }
+
+            case "Knight" -> {
+                // can skip over pieces, B1 G1 is white, B8 G8 is black
+                /*
+                    i + 2, j - 1
+                    i + 2, j + 1
+
+                    i + 1, j - 2
+                    i + 1, j + 2
+
+                    i - 1, j - 2
+                    i - 1, j + 2
+
+                    i - 2, j - 1
+                    i - 2, j + 1
+
+                 */
+
+                // TODO: display dots on GUI
+                // if the tile is null, display. Else, consider attack
+            }
+
+            case "King" -> {
+                // TODO: How to recognize check & checkmate? Is the tile being attacked? Do tiles need to be objects?
             }
         }
     }
